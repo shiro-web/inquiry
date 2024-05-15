@@ -1,5 +1,7 @@
 import { useRef, useState } from 'react';
 import './App.css';
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { db } from './firebase';
 
 function App() {
   const nameRef = useRef();
@@ -13,7 +15,7 @@ function App() {
   const contentRef = useRef();
   const [content,setContent] = useState();
 
-  const onSubmit = () =>{
+  const onSubmit = async() =>{
     const nameValue = nameRef.current.value
     setName(nameValue)
 
@@ -29,7 +31,15 @@ function App() {
     const contentValue = contentRef.current.value
     setContent(contentValue)
 
-    console.log(nameValue + "/" + mailValue + "/" + telValue + "/" + typeValue + "/" + contentValue)
+    console.log(nameValue + "/" + mailValue + "/" + telValue + "/" + typeValue + "/" + contentValue);
+    const collectionRef = collection(db, "users");
+    await addDoc(collectionRef, {
+      name: nameValue,
+      mail: mailValue,
+      tel: telValue,
+      content: contentValue,
+    });
+    console.log("保存されました")
   }
   return (
     <div className="w-80 m-auto pt-10">
