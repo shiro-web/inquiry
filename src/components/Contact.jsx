@@ -10,7 +10,6 @@ const Contact = () => {
 
     return (
         <>
-            <p>{id}</p>
             <SendMessage/>
         </>
     );

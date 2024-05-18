@@ -7,10 +7,18 @@ const SendMessage = () => {
     const { id } = useParams();
     const [message,setMessage] = useState();
     const [datas,setDatas] = useState();
+    const [name,setName] = useState();
 
     useEffect(() => {
+        onSnapshot(doc(db, "users",id), (querySnapshot) => {
+            const userName = (querySnapshot.data().name)
+            setName(userName)
+        });
+    },[])
+    
+    useEffect(() => {
         const q = query(collection(db, "users",id,"messages"),orderBy("createdAt"));
-        const unsub = onSnapshot(q, (querySnapshot) => {
+         onSnapshot(q, (querySnapshot) => {
             const newDatas = querySnapshot.docs.map((doc) => doc.data());
             setDatas(newDatas);
         });
@@ -28,6 +36,7 @@ const SendMessage = () => {
 
   return (
     <div>
+        <h1 className='text-xl mb-4'>{name && name}さん</h1>
         {datas && datas.map((data) => (
             <p>{data.text}</p>
         ))}
