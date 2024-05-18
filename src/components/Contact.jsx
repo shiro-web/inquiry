@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import SendMessage from './SendMessage';
 
 const Contact = () => {
     const { id } = useParams();
@@ -10,7 +11,7 @@ const Contact = () => {
     return (
         <>
             <p>{id}</p>
-            <button onClick={getUrl}>send</button>
+            <SendMessage/>
         </>
     );
 };

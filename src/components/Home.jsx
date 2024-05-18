@@ -43,7 +43,7 @@ const Home = () => {
       });
       console.log(docRef.id)
       console.log("保存されました");
-      navigate(`/contact/`)
+      navigate(`/contact/${docRef.id}`)
     }
   return (
     <div>
