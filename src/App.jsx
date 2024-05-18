@@ -5,6 +5,8 @@ import { db } from './firebase';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Contact from './components/Contact';
 import Home from './components/Home';
+import Login from './components/Login';
+import Admin from './components/Admin';
 
 function App() {
  
@@ -15,6 +17,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/contact/:id" element={<Contact />} />
+        <Route path="/login/" element={<Login />} />
+        <Route path="/admin/" element={<Admin />} />
       </Routes>
     </div>
   </Router>
