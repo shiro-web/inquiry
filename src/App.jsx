@@ -7,6 +7,7 @@ import Contact from './components/Contact';
 import Home from './components/Home';
 import Login from './components/Login';
 import Admin from './components/Admin';
+import AdminDetail from './components/AdminDetail';
 
 function App() {
  
@@ -19,6 +20,7 @@ function App() {
         <Route path="/contact/:id" element={<Contact />} />
         <Route path="/login/" element={<Login />} />
         <Route path="/admin/" element={<Admin />} />
+        <Route path="/admin/:id" element={<AdminDetail />} />
       </Routes>
     </div>
   </Router>

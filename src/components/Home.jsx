@@ -39,6 +39,7 @@ const Home = () => {
         name: nameValue,
         mail: mailValue,
         tel: telValue,
+        type:typeValue,
         content: contentValue,
       });
       console.log(docRef.id)
