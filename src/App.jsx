@@ -14,7 +14,6 @@ function App() {
   
   return (
     <Router>
-    <div className="w-80 m-auto pt-10">
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/contact/:id" element={<Contact />} />
@@ -22,7 +21,6 @@ function App() {
         <Route path="/admin/" element={<Admin />} />
         <Route path="/admin/:id" element={<AdminDetail />} />
       </Routes>
-    </div>
   </Router>
   );
 }

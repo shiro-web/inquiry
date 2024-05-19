@@ -26,12 +26,12 @@ const SendMessage = () => {
 
     const sendMessage = async(e) => {
         e.preventDefault();
-
         const collectionRef = collection(db, "users",id,"messages");
         await addDoc(collectionRef, {
             text:message,
             createdAt:serverTimestamp(),
       });
+      setMessage("")
     }
 
   return (
@@ -45,6 +45,7 @@ const SendMessage = () => {
                 type="text"
                 placeholder='メッセージを入力してください。'
                 onChange={(e) =>setMessage(e.target.value) }
+                value={message}
             />
             <input className='bg-blue-500 w-20 m-auto rounded-md p-2 text-white' type="button" value={"送信"} />
         </form>
