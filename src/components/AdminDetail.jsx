@@ -65,43 +65,45 @@ const AdminDetail = () => {
     }
 
   return (
-    <div className='bg-gray-200 h-screen w-96 m-auto pt-4'>
-            <p>
+    <div className='bg-gray-200 w-96 m-auto pt-4 relative flex flex-col h-screen'>
+            <div className='mb-4'>
                 {
                     situation === 'backlog' ? (<p className='text-red-600 font-bold text-center'>未対応</p>) :
                     situation === 'processing' ? (<p className='text-yellow-600 font-bold text-center'>対応中</p>) :
                     situation === 'completion' ? (<p className='text-green-600 font-bold text-center'>完了</p>) : ''
                 }
-            </p>
-        <div className='flex justify-center align-middle mb-8 '>
-            <button onClick={startSupport} className='bg-blue-400 p-2 rounded-lg text-white'>対応開始</button>
-            <button onClick={returnUnsupport} className='bg-red-400 p-2 rounded-lg text-white'>未対応に戻す</button>
-            <button onClick={completionSupport} className='bg-green-400 p-2 rounded-lg text-white'>完了</button>
+            </div>
+        <div className='flex justify-center align-middle gap-2 mb-8 '>
+            <button onClick={startSupport} className='bg-blue-400 p-1 rounded-md text-white'>対応開始</button>
+            <button onClick={returnUnsupport} className='bg-red-400 p-1 rounded-md text-white'>未対応に戻す</button>
+            <button onClick={completionSupport} className='bg-green-400 p-1 rounded-md text-white'>完了</button>
         </div>
         <h1 className='text-3xl text-center'>チャットの内容</h1>
-        {datas && datas.map((data) => (
-            <div className='p-4'>
-                <p  className={data.role ? 'bg-green-400 rounded-md w-40 ml-auto p-4' : 'bg-white rounded-md w-40 mr-auto p-4'}>{data.text}</p>
+            <div className='flex-grow overflow-y-auto p-4'>
+                {datas && datas.map((data) => (
+                    <div className=''>
+                        <p  className={data.role ? 'bg-green-400 rounded-md w-40 ml-auto p-4' : 'bg-white rounded-md w-40 mr-auto p-4'}>{data.text}</p>
+                    </div>
+                ))}
             </div>
-        ))}
-         <form onSubmit={sendMessage} className='text-center'>
-            <input
-                className='p-2' 
-                type="text"
-                placeholder='メッセージを入力してください。'
-                onChange={(e) =>setMessage(e.target.value) }
-                value={message}
-                readOnly = {situation === "backlog"}
-            />
-            <input className='bg-blue-500 w-20 m-auto p-2 text-white' type="submit" value={"送信"} />
-        </form>
-        {situation === "backlog"
-             ? 
-        (<p className='text-center'>チャットをするには、対応開始ボタンを押してください。</p>)
-            :
-        ""
-        }
-    </div>
+            <form onSubmit={sendMessage} className='text-center w-full '>
+                <input
+                    className='p-2 w-3/4 focus:outlinie-none' 
+                    type="text"
+                    placeholder='メッセージを入力してください。'
+                    onChange={(e) =>setMessage(e.target.value) }
+                    value={message}
+                    readOnly = {situation === "backlog"}
+                />
+                <input className='bg-blue-500 w-1/4 p-2 text-white' type="submit" value={"送信"} />
+                {situation === "backlog"
+                ? 
+            (<p className='text-center'>チャットをするには、対応開始ボタンを押してください。</p>)
+                :
+            ""
+            }
+            </form>  
+        </div>
   )
 }
 
