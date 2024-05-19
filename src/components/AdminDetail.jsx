@@ -94,6 +94,12 @@ const AdminDetail = () => {
             />
             <input className='bg-blue-500 w-20 m-auto rounded-md p-2 text-white' type="submit" value={"送信"} />
         </form>
+        {situation === "backlog"
+             ? 
+        (<p className='text-center'>メッセージを残すには、対応開始ボタンを押してください。</p>)
+            :
+        ""
+        }
     </div>
   )
 }
