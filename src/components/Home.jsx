@@ -48,7 +48,7 @@ const Home = () => {
       navigate(`/contact/${docRef.id}`)
     }
   return (
-    <div>
+    <div className='pt-16 w-96 m-auto'>
         <h1 className='text-3xl'>お問い合わせフォーム</h1>
         <form className='flex flex-col gap-4'>
             <div className='flex gap-2'>

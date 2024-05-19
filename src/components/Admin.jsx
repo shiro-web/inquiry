@@ -33,10 +33,10 @@ const Admin = () => {
     console.log(datas)
 
   return (
-    <div>
+    <div className='p-16'>
         <h1>管理画面</h1>
         <p onClick={logOut}>ログアウト</p>
-        <div className='grid grid-cols-2 w-96'>
+        <div className='grid grid-cols-4'>
             {
                 datas && datas.map((data,index) => (
                     <Link to={`/admin/${data.id}`} key={data.id} className='border p-4'>

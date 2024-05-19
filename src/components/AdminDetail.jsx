@@ -65,7 +65,7 @@ const AdminDetail = () => {
     }
 
   return (
-    <div className='bg-slate-300 h-screen w-96 m-auto pt-4'>
+    <div className='bg-gray-200 h-screen w-96 m-auto pt-4'>
             <p>
                 {
                     situation === 'backlog' ? (<p className='text-red-600 font-bold text-center'>未対応</p>) :
@@ -85,18 +85,19 @@ const AdminDetail = () => {
             </div>
         ))}
          <form onSubmit={sendMessage} className='text-center'>
-            <input 
+            <input
+                className='p-2' 
                 type="text"
                 placeholder='メッセージを入力してください。'
                 onChange={(e) =>setMessage(e.target.value) }
                 value={message}
                 readOnly = {situation === "backlog"}
             />
-            <input className='bg-blue-500 w-20 m-auto rounded-md p-2 text-white' type="submit" value={"送信"} />
+            <input className='bg-blue-500 w-20 m-auto p-2 text-white' type="submit" value={"送信"} />
         </form>
         {situation === "backlog"
              ? 
-        (<p className='text-center'>メッセージを残すには、対応開始ボタンを押してください。</p>)
+        (<p className='text-center'>チャットをするには、対応開始ボタンを押してください。</p>)
             :
         ""
         }
