@@ -40,6 +40,13 @@ const Admin = () => {
             {
                 datas && datas.map((data,index) => (
                     <Link to={`/admin/${data.id}`} key={data.id} className='border p-4'>
+                        <p>
+                            {
+                                data.situation === 'backlog' ? (<p className='text-red-600 font-bold text-center'>未対応</p>) :
+                                data.situation === 'processing' ? (<p className='text-yellow-600 font-bold text-center'>対応中</p>) :
+                                data.situation === 'completion' ? (<p className='text-green-600 font-bold text-center'>完了</p>) : ''
+                            }
+                        </p>
                         <p>{index + 1}</p>
                         <p>{data.name}</p>
                         <p>{data.mail}</p>

@@ -41,6 +41,7 @@ const Home = () => {
         tel: telValue,
         type:typeValue,
         content: contentValue,
+        situation:"backlog"
       });
       console.log(docRef.id)
       console.log("保存されました");

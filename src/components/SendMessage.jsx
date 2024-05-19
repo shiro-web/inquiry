@@ -35,19 +35,21 @@ const SendMessage = () => {
     }
 
   return (
-    <div>
-        <h1 className='text-xl mb-4'>{name && name}さん</h1>
+    <div className='bg-slate-300 h-screen w-96 m-auto'>
+        <h1 className='text-3xl mb-8 '>{name && name}さん</h1>
         {datas && datas.map((data) => (
-            <p>{data.text}</p>
+            <div className='p-4'>
+                <p className={data.role ? 'bg-white rounded-md w-40 mr-auto p-4' : 'bg-green-400 rounded-md w-40 ml-auto p-4'}>{data.text}</p>              
+            </div>
         ))}
-        <form onSubmit={sendMessage}>
+        <form onSubmit={sendMessage} className='text-center'>
             <input 
                 type="text"
                 placeholder='メッセージを入力してください。'
                 onChange={(e) =>setMessage(e.target.value) }
                 value={message}
             />
-            <input className='bg-blue-500 w-20 m-auto rounded-md p-2 text-white' type="button" value={"送信"} />
+            <input className='bg-blue-500 w-20 m-auto rounded-md p-2 text-white' type="submit" value={"送信"} />
         </form>
     </div>
   )
