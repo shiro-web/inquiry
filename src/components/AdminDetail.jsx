@@ -81,7 +81,7 @@ const AdminDetail = () => {
         <h1 className='text-3xl text-center'>チャットの内容</h1>
             <div className='flex-grow overflow-y-auto p-4'>
                 {datas && datas.map((data) => (
-                    <div className=''>
+                    <div className='mb-4'>
                         <p  className={data.role ? 'bg-green-400 rounded-md w-40 ml-auto p-4' : 'bg-white rounded-md w-40 mr-auto p-4'}>{data.text}</p>
                     </div>
                 ))}
