@@ -25,13 +25,15 @@ const SendMessage = () => {
     },[])
 
     const sendMessage = async(e) => {
-        e.preventDefault();
-        const collectionRef = collection(db, "users",id,"messages");
-        await addDoc(collectionRef, {
-            text:message,
-            createdAt:serverTimestamp(),
-      });
-      setMessage("")
+        if(message && message.trim() !== ""){
+            e.preventDefault();
+            const collectionRef = collection(db, "users",id,"messages");
+            await addDoc(collectionRef, {
+                text:message,
+                createdAt:serverTimestamp(),
+          });
+          setMessage("")
+        }
     }
 
   return (

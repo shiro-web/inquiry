@@ -29,13 +29,18 @@ const AdminDetail = () => {
 
     const sendMessage = async(e) => {
         e.preventDefault();
-        const collectionRef = collection(db, "users",id,"messages");
-        await addDoc(collectionRef, {
-            text:message,
-            role:"admin",
-            createdAt:serverTimestamp(),
-      });
-      setMessage("")
+        if(message && message.trim() !== ""){
+            const collectionRef = collection(db, "users",id,"messages");
+            await addDoc(collectionRef, {
+                text:message,
+                role:"admin",
+                createdAt:serverTimestamp(),
+          });
+          setMessage("")
+        }else{
+            return
+        }
+        
     }
 
     useEffect(() => {
@@ -95,7 +100,7 @@ const AdminDetail = () => {
                     value={message}
                     readOnly = {situation === "backlog"}
                 />
-                <input className='bg-blue-500 w-1/4 p-2 text-white' type="submit" value={"送信"} />
+                <input className='bg-blue-500 w-1/4 p-2 text-white cursor-pointer' type="submit" value={"送信"} />
                 {situation === "backlog"
                 ? 
             (<p className='text-center'>チャットをするには、対応開始ボタンを押してください。</p>)
