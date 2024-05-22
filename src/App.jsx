@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Admin from './components/Admin';
 import AdminDetail from './components/AdminDetail';
+import RouteComponents from './routes/routes.js';
 
 function App() {
  
@@ -15,11 +16,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/contact/:id" element={<Contact />} />
-        <Route path="/login/" element={<Login />} />
-        <Route path="/admin/" element={<Admin />} />
-        <Route path="/admin/:id" element={<AdminDetail />} />
+        {RouteComponents}
       </Routes>
   </Router>
   );

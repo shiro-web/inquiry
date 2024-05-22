@@ -83,7 +83,6 @@ const AdminDetail = () => {
             <button onClick={returnUnsupport} className='bg-red-400 p-1 rounded-md text-white'>未対応に戻す</button>
             <button onClick={completionSupport} className='bg-green-400 p-1 rounded-md text-white'>完了</button>
         </div>
-        <h1 className='text-3xl text-center'>チャットの内容</h1>
             <div className='flex-grow overflow-y-auto p-4'>
                 {datas && datas.map((data) => (
                     <div className='mb-4'>
