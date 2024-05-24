@@ -1,7 +1,8 @@
 import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp, updateDoc } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
 import { db } from '../firebase';
+import AppContext from '../context/Context';
 
 const AdminDetail = () => {
     const { id } = useParams();
@@ -9,7 +10,14 @@ const AdminDetail = () => {
     const [name,setName] = useState();
     const [message,setMessage] = useState();
     const [situation,setSituation] = useState();
-    
+    const {user} = useContext(AppContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(!user){
+            navigate(`/`)
+        }
+    },[user])
 
     useEffect(() => {
         onSnapshot(doc(db, "users",id), (querySnapshot) => {

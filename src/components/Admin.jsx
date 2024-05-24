@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { getAuth, signOut } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom';
 import { collection, doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
+import AppContext from '../context/Context';
 
 const Admin = () => {
     const navigate = useNavigate();
     const [datas,setDatas] = useState();
+    const {user} = useContext(AppContext)
 
     const auth = getAuth();
     const logOut = () => {
@@ -19,18 +21,22 @@ const Admin = () => {
 }
 
     useEffect(() => {
-        onSnapshot(collection(db, "users"), (querySnapshot) => {
-            const userDatas = querySnapshot.docs.map((doc) => {
-                return {
-                    id: doc.id,
-                    ...doc.data()
-                };
+        if(user){
+            onSnapshot(collection(db, "users"), (querySnapshot) => {
+                const userDatas = querySnapshot.docs.map((doc) => {
+                    return {
+                        id: doc.id,
+                        ...doc.data()
+                    };
+                });
+                setDatas(userDatas);
             });
-            setDatas(userDatas);
-        });
-    },[])
+        }else{
+            navigate(`/`)
+        }
+    },[user])
     
-    console.log(datas)
+    console.log(user)
 
   return (
     <div className='p-16'>
