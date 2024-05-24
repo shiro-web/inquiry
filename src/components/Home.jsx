@@ -22,6 +22,7 @@ const Home = () => {
     }
   return (
     <div className='pt-16 w-96 m-auto'>
+        <p>Redux</p>
         <h1 className='text-3xl'>お問い合わせフォーム</h1>
         <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)} >
             <div className=''>
