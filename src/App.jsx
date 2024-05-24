@@ -8,7 +8,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Admin from './components/Admin';
 import AdminDetail from './components/AdminDetail';
-import RouteComponents from './routes/routes.js';
+import RouteComponents from './routes/routes.jsx';
 
 function App() {
  
