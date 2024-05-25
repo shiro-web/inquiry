@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { getAuth, signOut } from "firebase/auth";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { collection, doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../redux/reducers';
 
 const Admin = () => {
     const navigate = useNavigate();
     const [datas,setDatas] = useState();
-
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    const dispatch = useDispatch();
     const auth = getAuth();
+
     const logOut = () => {
         signOut(auth).then(() => {
+            dispatch(logout());
+            localStorage.removeItem('user');
       // Sign-out successful.
       navigate('/')
     }).catch((error) => {
@@ -30,9 +36,15 @@ const Admin = () => {
         });
     },[])
     
-    console.log(datas)
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/login');
+        }
+    }, [isAuthenticated, navigate]);
+    console.log("isAuthenticated:", isAuthenticated)
 
   return (
+    isAuthenticated ? (
     <div className='p-16'>
         <h1>管理画面</h1>
         <p onClick={logOut}>ログアウト</p>
@@ -58,6 +70,9 @@ const Admin = () => {
             }
         </div>
     </div>
+    ) 
+    :
+    <Navigate to="/login" />
   )
 }
 

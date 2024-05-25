@@ -3,6 +3,7 @@ import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import store from '../redux/store';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -20,6 +21,8 @@ const Home = () => {
       });
       navigate(`/contact/${docRef.id}`)
     }
+
+    console.log(store)
   return (
     <div className='pt-16 w-96 m-auto'>
         <p>Redux</p>
