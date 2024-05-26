@@ -1,7 +1,8 @@
 import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { db } from '../firebase';
+import { useSelector } from 'react-redux';
 
 const AdminDetail = () => {
     const { id } = useParams();
@@ -9,7 +10,14 @@ const AdminDetail = () => {
     const [name,setName] = useState();
     const [message,setMessage] = useState();
     const [situation,setSituation] = useState();
-    
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            navigate('/login');
+        }
+    }, [isAuthenticated, navigate]);
 
     useEffect(() => {
         onSnapshot(doc(db, "users",id), (querySnapshot) => {
