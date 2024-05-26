@@ -4,11 +4,13 @@ import { db } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import store from '../redux/store';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
     const navigate = useNavigate();
     const { register, handleSubmit,formState: { errors } } = useForm();
-    
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
     const onSubmit = async(data) =>{
       const collectionRef = collection(db, "users");
       const docRef = await addDoc(collectionRef, {
@@ -22,7 +24,7 @@ const Home = () => {
       navigate(`/contact/${docRef.id}`)
     }
 
-    console.log(store)
+    console.log("isAuthenticated:", isAuthenticated)
   return (
     <div className='pt-16 w-96 m-auto'>
         <p>Redux</p>

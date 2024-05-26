@@ -37,11 +37,14 @@ const Admin = () => {
     },[])
     
     useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (!storedUser) {
+            navigate('/login');
+        }
         if (!isAuthenticated) {
             navigate('/login');
         }
     }, [isAuthenticated, navigate]);
-    console.log("isAuthenticated:", isAuthenticated)
 
   return (
     isAuthenticated ? (
