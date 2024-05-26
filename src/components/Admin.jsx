@@ -14,11 +14,19 @@ const Admin = () => {
     const logOut = () => {
         signOut(auth).then(() => {
       // Sign-out successful.
+      localStorage.removeItem('user');
       navigate('/')
     }).catch((error) => {
       // An error happened.
     });
 }
+
+
+useEffect(() => {
+    if(user){
+        navigate("/admin")
+    }
+},[user])
 
     useEffect(() => {
         if(user){

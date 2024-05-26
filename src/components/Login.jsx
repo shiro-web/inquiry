@@ -13,6 +13,8 @@ const Login = () => {
       e.preventDefault(); 
       signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        const user = userCredential.user;
+        localStorage.setItem("user",JSON.stringify(user))
       navigate("/admin/")
       })
       .catch((error) => {
@@ -20,7 +22,7 @@ const Login = () => {
         const errorMessage = error.message;
       });
     }
-
+console.log()
   return (
     <div class="bg-gray-50 dark:bg-gray-900">
         <div class="w-96 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import AppContext from '../context/Context';
 
 const Home = () => {
     const navigate = useNavigate();
     const { register, handleSubmit,formState: { errors } } = useForm();
+    const {user} = useContext(AppContext)
     
     const onSubmit = async(data) =>{
       const collectionRef = collection(db, "users");
@@ -20,6 +22,13 @@ const Home = () => {
       });
       navigate(`/contact/${docRef.id}`)
     }
+
+    useEffect(() => {
+        if(user){
+            navigate("/admin")
+        }
+    },[user])
+
   return (
     <div className='pt-16 w-96 m-auto'>
         <p>useContext</p>
